@@ -1,6 +1,6 @@
 from setuptools import setup
 
-INSTALL_REQUIRES = ['airflow-client >= 1.0.0']
+INSTALL_REQUIRES = ['airflow-client >= 1.0.0', 'rich >= 0.9', 'tabulate >= 0.8']
 
 with open("README.md", "r") as fh:
     long_description = fh.read()

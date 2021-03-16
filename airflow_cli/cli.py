@@ -1,5 +1,6 @@
 import airflow_client
 from airflow_client.api import dag_api
+from .console import AirflowConsole
 from airflow_client.model import *
 from airflow_client.rest import ApiException
 import os
@@ -44,7 +45,16 @@ def main():
 
             try:
                 api_response = api_instance.get_dags()
-                pprint(api_response)
+                AirflowConsole().print_as(
+                    data=sorted(api_response.dags, key=lambda d: d.dag_id),
+                    output='table',
+                    mapper=lambda x: {
+                        "dag_id": x.dag_id,
+                        "filepath": x.fileloc,
+                        "owner": x.owners,
+                        "paused": x.is_paused,
+                    },
+                )
             except airflow_client.ApiException as e:
                 print(f"Exception when calling DAGApi->get_dags: {e}\\n")
 

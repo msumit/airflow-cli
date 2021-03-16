@@ -5,3 +5,10 @@ which is genereated via OpenApi3 specifications.
 
 Make sure to install the client lib before installing this cli. To install this cli run `python setup.py install`. Once 
 installed run `airflow-cli`, which as of now has support of running `dags list` command. 
+
+```bash
+% airflow-cli dags list    
+dag_id      | filepath                               | owner   | paused
+============+========================================+=========+=======
+example_dag | /usr/local/airflow/dags/example-dag.py | airflow | False 
+```
